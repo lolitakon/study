@@ -1,0 +1,10 @@
+#在~/.bashrc中设置http_proxy的全局变量
+#具体代码：
+vim ~/.bashrc
+http_proxy="ip/hostname:port"
+export http_proxy
+#保存退出(:wq)
+source  ~/.bashrc
+#使变量及时生效
+curl www.google.com
+#测试能否绕过gfw  成功
