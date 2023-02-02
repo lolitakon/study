@@ -15,7 +15,7 @@ crontab -e
 * */8 * * * /目录/ddns -c /目录/config.json
 #这里-c一定要带，后带你的config.json所在位置，否则该二进制文件只能找到你当前用户目录下
 #意为每8小时执行检测一次，同理可在配一个开机检测
-@reboot 60; /目录/ddns -c /目录/config.json
+@reboot sleep 60; /目录/ddns -c /目录/config.json
 #这里笔者也是google搜罗来的用法，意为开机60s后执行该计划
 :wq
 #enjoy~
