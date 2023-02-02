@@ -5,7 +5,9 @@
 #具体代码：
 vim ~/.bashrc
 http_proxy="ip/hostname:port"
+https_proxy="ip/hostname:port"
 export http_proxy
+export https_proxy
 #保存退出(:wq)
 source  ~/.bashrc
 #使变量及时生效
