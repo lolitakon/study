@@ -1,0 +1,61 @@
+vsftp配置目录权限和家目录锁定的配置参数如下：
+
+
+
+解析：
+
+chroot_local_user=NO
+
+# 是否禁止本地用户切换到家目录上级目录，绑定家目录为用户的根目录
+
+
+
+chroot_list_enable=NO
+
+# 是否启用chroot列表文件，写入文件中的用户将锁定家目录
+
+
+
+chroot_list_file=/etc/vsftpd/chroot_list
+
+# 指定用户列表文件的文件路径
+
+
+
+chroot_local_user=YES，chroot_list_enable=YES
+
+# chroot_list_file文件中的用户可以切换到其他目录
+
+
+
+chroot_local_user=NO，chroot_list_enable=YES
+
+# chroot_list_file文件中的用户将锁定在家目录下
+
+
+
+chroot_local_user=YES，chroot_list_enable=NO
+
+# 所有本地用户都锁定在家目录下
+
+
+
+chroot_local_user=NO，chroot_list_enable=NO
+
+# 所有本地用户都可以切换到其他目录
+
+
+
+
+
+注意：
+
+从vsftpd2.3.5之后，增强了安全检查，如果用户被限定在了其主目录下，则该用户的主目录不能再具有写权限了！
+
+如果检查发现还有写权限，就会报错误500 OOPS: vsftpd: refusing to run with writable root inside chroot ()
+
+
+
+修复这个错误，可以用命令chmod a-w /home/user去除用户主目录的写权限，
+
+或者你可以在vsftpd的配置文件中增加下列两项中的一项：allow_writeable_chroot=YES (允许写权限)
