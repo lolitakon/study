@@ -59,3 +59,5 @@ chroot_local_user=NO，chroot_list_enable=NO
 修复这个错误，可以用命令chmod a-w /home/user去除用户主目录的写权限，
 
 或者你可以在vsftpd的配置文件中增加下列两项中的一项：allow_writeable_chroot=YES (允许写权限)
+
+ps:如果突然发现ftp只有命令行能使用，其它均无法使用无法读取目录那基本是防火墙的锅，不用怀疑，在vsftpd.conf中设置pasv_min/max_port（最大和最小端口），然后在ufw开放即可
