@@ -10,6 +10,6 @@ export http_proxy
 export https_proxy
 #保存退出(:wq)
 source  ~/.bashrc
-#使变量及时生效
+#使变量及时生效 ps:"~"在Linux中意为路径"/root"
 curl www.google.com
 #测试能否绕过gfw  成功
