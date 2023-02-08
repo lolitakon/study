@@ -1,4 +1,5 @@
 #nginx的配置目录在/etc/nginx/nginx.conf
+#只要替换http{}内容即可，其它不动
 server {
    listen 443 ssl;
    listen [::]:443 ssl;
