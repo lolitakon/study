@@ -1,0 +1,78 @@
+#warp 本质就是一个免费VPN，可以在已有vps上再套用warp来解锁部分网站(相当于二级代理)，Google One也类似于此
+
+#xray/v2ray配置二级代理
+1.将二级代理服务器的信息从v2ray客户端导出，（导出所选服务器为客户端配置）(后边用其outbounds内二级代理节点配置配置插入到一级代理的outbounds中)
+2.在x-ui面板中将配置模板修改
+  2.1 将inbounds中所有配置替换成下面这部分（不包括inbounds｛｝）
+          //本地监听配置
+      {
+          "listen": "127.0.0.1",
+          "port": 30000,        //此端口可以修改，配合你的二级代理入站端口即可
+          "protocol": "socks", 
+          "sniffing": {
+              "enabled": true,
+              "destOverride": ["http", "tls"]
+          }
+      }
+      
+  2.2 在" "routing":{rules[ " 中插入以下部分
+        //路由规则，这部分可以自定义自己要转发的域名规则
+        //对应域名配置可以参考:https://github.com/v2fly/domain-list-community
+    {
+        "type": "field",
+        "outboundTag": "netflix_proxy",
+        "domain": [
+            "geosite:netflix",
+            "geosite:disney"
+        ]
+    },
+
+  2.3 将1中的 "outbounds":[ 中的第一段对象(即对应二级节点的配置信息)copy到一级节点的outbounds中（是追加不是覆盖）, 并将其tag修改为2.2中配置好的路由tag
+3.enjoy
+
+#了解了二级代理，那么配置warp也就不难了，只不过二级代理由你的节点变成了warp
+重复步骤2.1与2.2,在2.3时将出口改为127.0.0.1:40000即可(warp默认端口)
+配置文件如下：
+  {
+      "tag": "netflix_proxy",
+      "protocol": "socks",
+      "settings": {
+        "servers": [
+          {
+            "address": "127.0.0.1",
+            "port": 40000
+          }
+        ]
+      }
+    },
+    
+    
+    
+#安装warp(ps:warp客户端只支持AMD64，不支持ARM，谨慎安装)
+cloudflare有自己的仓库源，提供给个人下载，但含有密钥加密，可以参考官方文档来先安装更新源:https://pkg.cloudflareclient.com/install
+1.安装安装存储库的 GPG 密钥
+curl https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+
+2.将存储库添加到ubuntu的 apt 源中
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
+
+3.更新源(如果这一步出现错误，则大概率是没有安装1的密钥或者密钥已过期，参考官方文档去更新密钥即可)
+apt-get update
+
+4.安装warp
+apt-get install cloudflare-warp
+
+成功
+
+#配置使用warp
+1.注册warp
+warp-cli register
+
+2.配置warp代理模式为socks（必须配置，因为默认模式warp会代理所有端口，造成机器失联！）
+warp-cli set-mode proxy         //代理端口为40000
+
+3.连接warp
+warp-cli connect
+
+4.查询代理后ip
+curl ifconfig.me --proxy socks5://127.0.0.1:40000
