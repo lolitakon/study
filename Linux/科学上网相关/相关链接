@@ -1,6 +1,9 @@
 #cdf地址:www.cloudflare.com
 #acme.sh(自动申请免费ca证书)项目地址:https://github.com/acmesh-official/acme.sh
 curl https://get.acme.sh | sh
+#x-ui项目地址:https://github.com/vaxilu/x-ui
+bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 #cdf CDN 测速优选工具：https://github.com/XIU2/CloudflareSpeedTest
 #aws(amazon web service)白嫖  https://aws.amazon.com/cn/free/
 3个月 光帆（lightsail，类似腾讯轻量云） 1年 EC2（弹性云计算） 永久  cft（cloudfront 类似于clodflare的cdn加速）,前两者就是常规vps
+awrp linux官方地址：https://pkg.cloudflareclient.com/install
