@@ -7,3 +7,11 @@ bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 #aws(amazon web service)白嫖  https://aws.amazon.com/cn/free/
 3个月 光帆（lightsail，类似腾讯轻量云） 1年 EC2（弹性云计算） 永久  cft（cloudfront 类似于clodflare的cdn加速）,前两者就是常规vps
 awrp linux官方地址：https://pkg.cloudflareclient.com/install
+
+
+#windows搭建相关:
+  
+#  v2ray内核：https://github.com/v2fly/v2ray-core/releases/latest
+#  自签证书：https://www.cookcode.cc/selfsign
+#  nginx：https://nginx.org/en/download.html
+#  win-acme：https://www.win-acme.com
