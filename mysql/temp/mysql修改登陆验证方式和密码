@@ -1,0 +1,6 @@
+#此方法可以解决“只有root用户可以登陆”的问题
+#本质就是linux中mysql root的默认登陆方式为“用户登陆”,即只要当前linux使用账户是root或者使用"sudo"方式则无需输入密码可直接登陆
+#此方法缺点也很明显，如果需要布置一些工程项目使用账户秘密登陆则无法正常登陆，故修改
+#代码
+sudo mysql -u root -p
+alter user 'root'@'localhost' identified with mysql_native_password by 'your password' #这行代码也可以用来修改mysql密码
