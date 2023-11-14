@@ -18,6 +18,17 @@
 curl -L https://brightdata.com/static/lpm/luminati-proxy-latest-setup.sh | bash
 #使用非全局代理，且作为守护进程（后台）启用luminati
 proxy-manager --no-dropin --daemon
-netstat -anp | grep 24999
-#查看可以发现其监听0000:24999，此为它的管理配置端口，有条件（配置）可以使用RDP然后浏览器进入localhost:24999
-#无条件可以
+netstat -anp | grep 22999
+#查看可以发现其监听0000:22999，此为它的管理配置端口，有条件（配置）可以使用RDP然后浏览器进入localhost:22999
+#无条件也可以使用服务器公网ip/domain:22999进入，但该过程不安全！不安全！不安全！，其内容均为http明文传输而非https，建议用此方法后修改登录口令和api token
+#用此方法前需先开放对应端口且将你的访问机公网IP加入白名单
+lpm_whitelist_ip YOUR_IP
+#而后根据页面提示操作即可
+
+#  更安全的方法
+#或许可以单纯使用命令与修改配置文件实现，配置文件路径在~/proxy_manager下，但官方和github项目没有给出其他配置方法
+
+#  实现socks5
+#按照指引搭建好http/https代理之后它就会在本地24000开启socks代理，使用xray等工具配置好router与outboud即可，另外个人更推荐搭建http代理
+#其https代理使用的ca证书并非可信证书，需要将luminati公钥证书加入客户端可信根证书（不然一直弹不可信烦死你），可能不安全，实际上你访问的对应服务器基本已有
+#一层tls,无需再套一层，多套一层的好处无非就是你的访问记录不会被截获（因为tls不会对头进行加密，个人认为无所谓），多套一层反而大幅影响上网质量没必要
