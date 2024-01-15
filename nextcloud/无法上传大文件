@@ -1,0 +1,1 @@
+#排查是nginx的问题，nginx默认要求上传文件大小不超过1MB，在nginx.conf中的http中加入client_max_body_size xxxxxM;即可
