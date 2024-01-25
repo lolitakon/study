@@ -1,0 +1,22 @@
+stream {
+    #将12345端口转发到192.168.1.23的3306端口
+    server {
+        listen 12345;
+        proxy_connect_timeout 5s;
+        proxy_timeout 20s;
+        proxy_pass 192.168.1.23:3306;
+    }
+    #将udp 53端口转发到192.168.1.23 53端口
+    server {
+        listen 53 udp reuseport;
+        proxy_timeout 20s;
+        proxy_pass 192.168.1.23:53;
+    }
+    #ipv4转发到ipv6
+    server {
+        listen 9135;
+        proxy_connect_timeout 10s;
+        proxy_timeout 30s;
+        proxy_pass [2607:fcd0:107:3cc::1]:9135;
+    }
+}
