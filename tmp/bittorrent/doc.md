@@ -2,7 +2,7 @@
 
 ## 说明文档
 
-### 基于HTTPS的API
+### 一、基于HTTPS的API
 
 本API基于Django与Nginx实现，能有效检测DGA恶意域名，请求路径为api，支持get与post请求方式
 
@@ -22,7 +22,7 @@
 
 **post方式**：<请求头>`domain=api.example.com`
 
-### DOH（DNS OVER HTTPS）
+### 二、DOH（DNS OVER HTTPS）
 
 本系统同样支持DOH，兼容TYPE为A与AAAA的DNS请求，遵循[RFC8484](https://www.rfc-editor.org/rfc/pdfrfc/rfc8484.txt.pdf)
 
