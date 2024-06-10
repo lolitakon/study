@@ -21,3 +21,16 @@
 **get方式**：查询www.example.com是否为DGA域名，请求应为`https://api.example.com/api?domain=www.example.com`
 
 **post方式**：<请求头>`domain=api.example.com`
+
+### DOH（DNS OVER HTTPS）
+
+本系统同样支持DOH，兼容TYPE为A与AAAA的DNS请求，遵循RFC8484
+
+#### 示例
+
+服务器域名为api.example.com
+
+**get方式**：发起www.example.com的DNS请求，请求应为`https://api.example.com/dns-query?dns=经过BASE64安全编码的DNS原始报文`
+
+**post方式**：path = /dns-query
+<请求头>`原始DNS报文`
