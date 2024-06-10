@@ -33,4 +33,5 @@
 **get方式**：发起www.example.com的DNS请求，请求应为`https://api.example.com/dns-query?dns=经过BASE64安全编码的DNS原始报文`
 
 **post方式**：path = /dns-query
+
 <请求头>`原始DNS报文`
