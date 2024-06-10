@@ -24,7 +24,7 @@
 
 ### DOH（DNS OVER HTTPS）
 
-本系统同样支持DOH，兼容TYPE为A与AAAA的DNS请求，遵循RFC8484
+本系统同样支持DOH，兼容TYPE为A与AAAA的DNS请求，遵循[RFC8484](https://www.rfc-editor.org/rfc/pdfrfc/rfc8484.txt.pdf)
 
 #### 示例
 
