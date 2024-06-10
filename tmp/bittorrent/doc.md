@@ -30,7 +30,7 @@
 
 服务器域名为api.example.com
 
-**get方式**：发起对域名www.example.com的问询DNS请求，请求应为`https://api.example.com/dns-query?dns=经过BASE64安全编码的DNS原始报文`
+**get方式**：发起问询DNS请求，请求应为`https://api.example.com/dns-query?dns=经过BASE64安全编码的DNS原始报文`
 
 **post方式**：path = /dns-query
 
